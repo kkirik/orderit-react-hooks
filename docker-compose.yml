@@ -3,7 +3,7 @@ version: "3.4"
 services:
   frontend:
     build:
-      context: ./frontend
+      context: .
       target: development
     command: yarn dev
     env_file:
@@ -12,7 +12,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./frontend:/react-hooks:delegated
+      - .:/react-hooks:delegated
 
 volumes:
   node_modules:
