@@ -32,6 +32,7 @@
       { "import-sources-order": "any", "named-imports-order": "case-insensitive" }
     ],
     "import-name": false,
-    "function-name": false
+    "function-name": false,
+    "no-implicit-dependencies": false
   }
 }
