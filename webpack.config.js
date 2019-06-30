@@ -4,14 +4,17 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const __DEV__ = process.env.NODE_ENV !== 'production';
 
+/** @type {webpack.Configuration} */
 const config = {
   mode: __DEV__ ? 'development' : 'production',
   bail: !__DEV__,
-  entry: path.join(__dirname, 'src', 'index'),
+  entry: {
+    app: path.join(__dirname, 'src/index.tsx')
+  },
   watch: __DEV__,
   resolve: {
     extensions: ['.json', '.ts', '.tsx', '.js'],
-    modules: [path.resolve(__dirname, "src/index.tsx"), 'node_modules'],
+    modules: [__dirname, path.resolve(__dirname, 'src'), 'node_modules']
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -21,16 +24,17 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: './public/index.html'
     })
   ],
   module: {
     rules: [
       {
         test: /.tsx?$/,
-        include: [path.resolve(__dirname, 'src')],
-        exclude: [path.resolve(__dirname, 'node_modules')],
-        loader: 'babel-loader',
+        include: __DEV__
+          ? [path.resolve(__dirname, 'src')]
+          : [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
+        loader: 'babel-loader'
       },
       {
         test: /.css$/,
@@ -46,7 +50,7 @@ const config = {
           name: 'vendor',
           test: 'vendor',
           enforce: true
-        },
+        }
       }
     },
     runtimeChunk: true
@@ -58,7 +62,7 @@ const config = {
 };
 
 if (__DEV__) {
-  config.plugins.push(new ForkTsCheckerWebpackPlugin())
+  config.plugins.push(new ForkTsCheckerWebpackPlugin());
 }
 
 module.exports = config;

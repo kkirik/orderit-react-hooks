@@ -14,7 +14,7 @@
     "noErrorTruncation": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "./dist/",
+    "outDir": "./build/",
     "pretty": true,
     "skipLibCheck": true,
     "sourceMap": false,
@@ -23,5 +23,5 @@
       "src/*": ["src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }
