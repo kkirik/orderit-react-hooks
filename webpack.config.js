@@ -57,7 +57,24 @@ const config = {
   },
   devServer: {
     host: '0.0.0.0',
-    port: 3000
+    port: 3000,
+    stats: {
+      assets: true,
+      children: false,
+      chunks: false,
+      cached: true,
+      colors: true,
+      errorDetails: false,
+      errors: true,
+      hash: false,
+      modules: false,
+      publicPath: false,
+      reasons: false,
+      source: false,
+      timings: true,
+      version: false,
+      warnings: true
+    }
   }
 };
 

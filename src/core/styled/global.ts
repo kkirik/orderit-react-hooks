@@ -1,9 +1,11 @@
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-export const Layout = styled.div``;
-
-export const StyledMenu = styled('div')`
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
+export const GlobalStyle = createGlobalStyle`
+  body, ul {
+    padding: 0;
+    margin: 0;
+  }
+  ul {
+    list-style: none;
+  }
 `;

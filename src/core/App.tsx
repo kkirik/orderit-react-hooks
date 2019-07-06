@@ -1,11 +1,15 @@
 import React from 'react';
 
 import { BaseLayout } from './layout/BaseLayout';
+import { GlobalStyle } from './styled/global';
 
 export function App() {
   return (
-    <BaseLayout>
-      <div>init</div>
-    </BaseLayout>
+    <>
+      <GlobalStyle />
+      <BaseLayout>
+        <div>init</div>
+      </BaseLayout>
+    </>
   );
 }
