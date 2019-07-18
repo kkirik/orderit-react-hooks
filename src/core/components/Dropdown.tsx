@@ -31,6 +31,7 @@ export const Dropdown: FC<IProps> = ({ items }) => {
       width="100%"
       height="60px"
       cursor="pointer"
+      background="#fff"
       position="relative"
       onClick={() => setOpenMenu(!openMenu)}
     >

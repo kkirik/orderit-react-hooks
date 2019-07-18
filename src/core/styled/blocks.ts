@@ -7,6 +7,7 @@ interface IGridProps {
   gridTemplateRows?: string;
   gridTemplateColumns?: string;
   gridTemplateAreas?: string;
+  alignItems?: string;
 }
 
 interface IGridItemProps {
@@ -19,6 +20,8 @@ interface IGridItemProps {
 
 interface IBoxProps {
   border?: string;
+  borderRadius?: string;
+  color?: string;
   padding?: string;
   margin?: string;
   width?: string | number;
@@ -27,10 +30,13 @@ interface IBoxProps {
   boxShadow?: string;
   center?: boolean;
   cursor?: string;
+  background?: string;
 }
 
 export const Box = styled('div')<IBoxProps>`
   border: ${props => props.border || 'none'};
+  border-radius: ${props => props.borderRadius || 0};
+  color: ${props => props.color};
   padding: ${props => props.padding || 0};
   margin: ${props => props.margin || 0};
   width: ${props => props.width || 'auto'};
@@ -40,6 +46,7 @@ export const Box = styled('div')<IBoxProps>`
   line-height: ${props => (props.center ? props.height : null)};
   text-align: ${props => (props.center ? 'center' : null)};
   cursor: ${props => props.cursor};
+  background: ${props => props.background};
 `;
 
 export const Grid = styled(Box)<IGridProps & IGridItemProps>`
@@ -52,10 +59,10 @@ export const Grid = styled(Box)<IGridProps & IGridItemProps>`
   grid-template-areas: ${props => props.gridTemplateAreas || ''};
   grid-area: ${props => props.gridArea};
   grid-auto-flow: dense;
+  align-items: ${props => props.alignItems};
 `;
 
 export const GridItem = styled(Box)<IGridItemProps>`
-  background-color: lightgreen;
   grid-row-start: ${props => props.gridRowStart};
   grid-column-start: ${props => props.gridColumnStart};
   grid-row-end: ${props => props.gridRowEnd};
