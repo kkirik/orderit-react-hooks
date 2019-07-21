@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { StyledMenu, StyledMenuItems } from 'src/core/styled/dropdown';
 import { Box } from 'src/core/styled/blocks';
@@ -35,13 +36,13 @@ export const Dropdown: FC<IProps> = ({ items }) => {
       position="relative"
       onClick={() => setOpenMenu(!openMenu)}
     >
-      {activeElement.title}
+      <div>{activeElement && activeElement.title}</div>
       {openMenu && (
         <StyledMenu>
           {items.map(item => (
-            <StyledMenuItems key={item.title} onClick={setNewItem}>
-              {item.title}
-            </StyledMenuItems>
+            <Link to={item.url} key={item.title}>
+              <StyledMenuItems onClick={setNewItem}>{item.title}</StyledMenuItems>
+            </Link>
           ))}
         </StyledMenu>
       )}

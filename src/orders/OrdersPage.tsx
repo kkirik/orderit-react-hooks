@@ -32,7 +32,9 @@ export function OrdersPage() {
 
     try {
       const res = await axios.get<Order[]>('/api/orders', { params });
-      setOrders(res.data);
+
+      const newOrders = res.data.map((o) => new Order(o));
+      setOrders(newOrders);
     } finally {
       setLoading(false);
     }
@@ -47,7 +49,7 @@ export function OrdersPage() {
   function renderOrders() {
     return orders.length ? (
       <Grid gap="10px" gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))">
-        {orders.map(order => (
+        {orders.map((order) => (
           <GridItem key={order.orderNumber}>
             <OrderCard order={order} />
           </GridItem>

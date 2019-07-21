@@ -1,17 +1,17 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 
 import { Grid, GridItem } from 'src/core/styled/blocks';
 import { Dropdown, IItem } from 'src/core/components/Dropdown';
 import { Logo } from 'src/core/styled/typography';
 import { ChoisenLink } from 'src/core/styled/order';
-import { Context } from 'src/core/App';
+import { useAppContext } from '../AppContext';
 
 interface IProps {
   children?: React.ReactElement | React.ReactElement[];
 }
 
 export const BaseLayout: FC<IProps> = ({ children }) => {
-  const { store } = useContext(Context);
+  const { store } = useAppContext();
 
   const gridTemplateAreas = `
     "header header"

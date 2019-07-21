@@ -6,6 +6,14 @@ export enum OrderStatus {
   Ready = 'ready',
 }
 
+export const statusColors = {
+  [OrderStatus.New]: 'grey',
+  [OrderStatus.Done]: 'green',
+  [OrderStatus.Ready]: 'coral',
+  [OrderStatus.Error]: 'red',
+  [OrderStatus.Preparing]: 'lightblue',
+};
+
 export class Order {
   orderNumber: number;
   customer: string;
@@ -13,7 +21,11 @@ export class Order {
   orderList: string[] = [];
   status: OrderStatus;
 
-  constructor(order?: Order) {
+  get statusColor() {
+    return statusColors[this.status] || 'grey';
+  }
+
+  constructor(order?: Omit<Order, 'statusColor'>) {
     Object.assign(this, order);
   }
 }

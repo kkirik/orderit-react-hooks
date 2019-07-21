@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Box } from 'src/core/styled/blocks';
 import { DD, DT } from 'src/core/styled/typography';
 import { StyledOrderCard } from 'src/core/styled/order';
-import { Order, OrderStatus } from 'src/core/models/Order';
+import { Order } from 'src/core/models/Order';
 
 interface IProps {
   order: Order;
@@ -19,17 +19,9 @@ export const OrderCard: FC<IProps> = ({ order }) => (
   >
     <Link to={`/orders/${order.orderNumber}`}>
       <Box
-        height="20px"
-        background={
-          {
-            [OrderStatus.New]: 'grey',
-            [OrderStatus.Done]: 'green',
-            [OrderStatus.Ready]: 'coral',
-            [OrderStatus.Error]: 'red',
-            [OrderStatus.Preparing]: 'lightblue',
-          }[order.status]
-        }
         center
+        height="20px"
+        background={order.statusColor}
         borderRadius="10px 10px 0 0"
         color="#fafafa"
       >
@@ -46,12 +38,12 @@ export const OrderCard: FC<IProps> = ({ order }) => (
         </dl>
         <dl>
           <DT>Order price:</DT>
-          <DD>{order.price}$</DD>
+          <DD>{order.price} $</DD>
         </dl>
         <dl>
           <DT>What's ordered:</DT>
           <DD>
-            {order.orderList.map(el => (
+            {order.orderList.map((el) => (
               <span key={el}> {el}</span>
             ))}
           </DD>

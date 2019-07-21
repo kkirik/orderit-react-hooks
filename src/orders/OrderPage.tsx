@@ -1,20 +1,20 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import axios from 'axios';
 
 import { Box } from 'src/core/styled/blocks';
 import { DD, DT } from 'src/core/styled/typography';
-import { Order, OrderStatus } from 'src/core/models/Order';
+import { Order } from 'src/core/models/Order';
 import { LeftArrow } from 'src/core/styled/components';
 import { Spinner } from 'src/core/layout/Spinner';
-import { Context } from 'src/core/App';
+import { useAppContext } from 'src/core/AppContext';
 
 interface IProps extends RouteComponentProps<{ id: string }> {}
 
 export const OrderPage: FC<IProps> = ({ match }) => {
   const [order, setOrder] = useState<Order>();
   const [loading, setLoading] = useState(false);
-  const { dispatch } = useContext(Context);
+  const { dispatch } = useAppContext();
 
   useEffect(() => {
     async function load() {
@@ -23,7 +23,7 @@ export const OrderPage: FC<IProps> = ({ match }) => {
       try {
         const { data } = await axios.get<Order>(`/api/orders/${match.params.id}`);
 
-        setOrder(data);
+        setOrder(new Order(data));
         dispatch({ type: 'updateOrder', order: data.orderNumber });
       } finally {
         setLoading(false);
@@ -45,17 +45,9 @@ export const OrderPage: FC<IProps> = ({ match }) => {
         boxShadow="0 0 50px 0 rgba(0, 0, 0, 0.15)"
       >
         <Box
-          height="25px"
-          background={
-            {
-              [OrderStatus.New]: 'grey',
-              [OrderStatus.Done]: 'green',
-              [OrderStatus.Ready]: 'coral',
-              [OrderStatus.Error]: 'red',
-              [OrderStatus.Preparing]: 'lightblue',
-            }[order.status]
-          }
           center
+          height="25px"
+          background={order.statusColor}
           borderRadius="10px 10px 0 0"
           color="#fafafa"
         >
