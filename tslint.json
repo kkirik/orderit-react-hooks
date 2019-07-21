@@ -27,12 +27,18 @@
     "max-line-length": [true, 100],
     "curly": [true, "ignore-same-line"],
     "indent": [true, "spaces", 2],
+    "no-submodule-imports": false,
+    "no-parameter-reassignment": true,
+    "no-return-await": true,
+    "object-literal-sort-keys": false,
     "ordered-imports": [
       true,
       { "import-sources-order": "any", "named-imports-order": "case-insensitive" }
     ],
     "import-name": false,
     "function-name": false,
-    "no-implicit-dependencies": false
+    "no-implicit-dependencies": false,
+    "align": true,
+    "ter-arrow-parens": true
   }
 }

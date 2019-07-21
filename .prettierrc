@@ -1,6 +1,6 @@
 {
-  "jsxSingleQuote": true,
-  "trailingComma": "all",
+  "arrowParens": "always",
   "printWidth": 100,
-  "endOfLine": "auto"
+  "singleQuote": true,
+  "trailingComma": "all"
 }
