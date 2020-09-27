@@ -17,7 +17,7 @@ it('Correctly snapshot', () => {
   expect(tree).toMatchSnapshot();
 });
 
-it('Correcly render and change location when orderCard clicked', (done) => {
+it('Correcly render and change location when orderCard clicked', async (done) => {
   const response = {
     data: [
       {

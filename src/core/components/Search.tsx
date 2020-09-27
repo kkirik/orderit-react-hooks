@@ -23,7 +23,7 @@ export const Search: FC<IProps> = ({ force, onSubmit }) => {
   }
 
   return (
-    <form onSubmit={e => handleChange(e, true)}>
+    <form onSubmit={(e) => handleChange(e, true)}>
       <Grid width="100%" height="30px" padding="10px" gridTemplateColumns="90% 1fr">
         <GridItem>
           <Input type="text" ref={searchNode} onChange={handleChange} />

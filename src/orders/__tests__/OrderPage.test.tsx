@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import renderer, { act } from 'react-test-renderer';
 import { mount } from 'enzyme';
 import { Router } from 'react-router';
 import MockAdapter from 'axios-mock-adapter';
@@ -29,7 +29,7 @@ it('Correctly snapshot', () => {
   expect(tree).toMatchSnapshot();
 });
 
-it('Correcly render', (done) => {
+it('Correcly render', async (done) => {
   const response = {
     data: {
       customer: 'shallow',
@@ -39,17 +39,19 @@ it('Correcly render', (done) => {
       status: OrderStatus.Preparing,
     },
   };
-
   const id = '1';
   const match: any = { params: { id } };
   const mock = new MockAdapter(axios);
 
   mock.onGet(`/api/orders/${id}`).reply(200, response.data);
+
   const component = <OrderPage history={history} match={match} location={{} as any} />;
   const tree = mount(<Router history={history}>{component}</Router>);
 
   setImmediate(() => {
-    tree.update();
+    act(() => {
+      tree.update();
+    });
 
     expect(tree.find('span')).toHaveLength(2);
     expect(

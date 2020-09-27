@@ -69,7 +69,7 @@ export const OrderPage: FC<IProps> = ({ match }) => {
           <dl>
             <DT>What's ordered:</DT>
             <DD>
-              {order.orderList.map(el => (
+              {order.orderList.map((el) => (
                 <span key={el}> {el}</span>
               ))}
             </DD>

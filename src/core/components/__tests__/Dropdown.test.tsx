@@ -52,7 +52,7 @@ it('Correctly closed dropdown', () => {
   tree.find(Box).simulate('click');
   tree
     .find(StyledMenuItems)
-    .findWhere(li => li.type() === StyledMenuItems && li.text() === 'Logout')
+    .findWhere((li) => li.type() === StyledMenuItems && li.text() === 'Logout')
     .simulate('click', { target: { textContent: 'Logout' } });
 
   expect(tree.find(Link)).toHaveLength(0);
@@ -65,7 +65,7 @@ it('Correctly change active element', () => {
   tree.find(Box).simulate('click');
   tree
     .find(StyledMenuItems)
-    .findWhere(li => li.type() === StyledMenuItems && li.text() === 'Logout')
+    .findWhere((li) => li.type() === StyledMenuItems && li.text() === 'Logout')
     .simulate('click', { target: { textContent: 'Logout' } });
 
   expect(tree.find('div[children="Logout"]')).toHaveLength(1);
