@@ -9,7 +9,7 @@
   "homepage": "https://github.com/kkirik/orderit-react-hooks#readme",
   "scripts": {
     "dev": "webpack-dev-server",
-    "test": "jest --watch --verbose",
+    "test": "jest --verbose",
     "build": "NODE_ENV=production webpack"
   },
   "dependencies": {
